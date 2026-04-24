@@ -119,12 +119,12 @@
   ============================================================ -->
   <div class="sh-header">
     <div class="sh-top-row">
-      <span class="sh-label">Selected Works</span>
+      <span class="sh-label">Lo que crearás</span>
       <div class="sh-line"></div>
       <span class="sh-count">00</span>
     </div>
-    <h2 class="sh-headline">Multimedia<br/>Engineering</h2>
-    <p class="sh-sub">A collection of projects spanning interaction, motion, sound, and space — 2023 / 2024</p>
+    <h2 class="sh-headline">Ingeniería<br/>En Multimedia</h2>
+    <p class="sh-sub">Algunos de los proyectos de los estudiantes — 2022 / 2026</p>
   </div>
 
   <!-- ============================================================
