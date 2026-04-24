@@ -11,7 +11,8 @@
   // CHECKPOINT A — Frame source configuration
   // ============================================================
   const TOTAL_FRAMES = 720;
-  const FRAME_PATH   = '/frames/';
+  // import.meta.env.BASE_URL = '/' locally, '/cards-animation/' on GitHub Pages
+  const FRAME_PATH   = import.meta.env.BASE_URL + 'frames/';
   const FRAME_PREFIX = 'cards arriving_';
   const FRAME_EXT    = '.png';
 
