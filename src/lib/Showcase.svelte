@@ -10,16 +10,18 @@
   // Layout keys: 'wide' (2 col) | 'tall' (2 row) | 'xwide' (3 col) | 'normal'
   // ============================================================
   const projects = [
-    { id: '01', title: 'Echoes',       type: 'Interactive Documentary', year: '2024', color: '#E42D3F', layout: 'wide'   },
-    { id: '02', title: 'Neon Pulse',   type: 'Motion Graphics Reel',    year: '2024', color: '#0063D3', layout: 'normal' },
-    { id: '03', title: 'The Void',     type: 'Generative Art',          year: '2023', color: '#FF1132', layout: 'tall'   },
-    { id: '04', title: 'Signal Lost',  type: 'Podcast Series',          year: '2024', color: '#0077D3', layout: 'normal' },
-    { id: '05', title: 'Parallel',     type: 'AR Experience',           year: '2023', color: '#FF5256', layout: 'wide'   },
-    { id: '06', title: 'Chromatic',    type: 'Live VJ Performance',     year: '2024', color: '#0087D4', layout: 'wide'   },
-    { id: '07', title: 'Fragments',    type: 'Animated Short Film',     year: '2023', color: '#E42D3F', layout: 'normal' },
-    { id: '08', title: 'Static',       type: 'Sound Design Portfolio',  year: '2024', color: '#0063D3', layout: 'normal' },
-    { id: '09', title: 'Prism',        type: 'Digital Exhibition',      year: '2023', color: '#FF1132', layout: 'normal' },
-    { id: '10', title: 'Drift',        type: 'Experimental Video Art',  year: '2024', color: '#0077D3', layout: 'xwide'  },
+    { id: '01', title: 'Shattered Dimensions', type: 'Videogame', year: '2025', color: '#E42D3F', layout: 'wide', href: 'https://youtu.be/Edkg-3UX678' },
+    { id: '02', title: 'Signal Loss',  type: 'Interactive VR experience', year: '2026', color: '#0063D3', layout: 'normal', href: 'https://youtu.be/i9O02UTwz-4' },
+    { id: '03', title: 'Todo pasa',    type: 'Animation',               year: '2024', color: '#FF1132', layout: 'tall', href: 'https://youtu.be/ZJnWZPjOmAI' },
+    { id: '04', title: 'El reflejo',   type: 'Short film',              year: '2025', color: '#0077D3', layout: 'normal', href: 'https://youtu.be/DU5OJZSlr9Q' },
+    { id: '05', title: 'Triciclo',     type: 'Render',                  year: '2026', color: '#FF5256', layout: 'wide', href: 'https://youtu.be/Ffv9OrQj6Fs' },
+    { id: '06', title: 'Idles',        type: '3D animation integration into a videogame environment', year: '2025', color: '#0087D4', layout: 'wide', href: 'https://youtu.be/RPQHx0z3Gsg?si=jSB4MHtu9R4qhdyM' },
+    { id: '07', title: 'El Carcacho no Sube (prolly end up in the River)', type: '3D Animation',      year: '2025', color: '#E42D3F', layout: 'normal', href: 'https://youtu.be/Bo2mO9kCTJY' },
+    { id: '08', title: 'Nissan GTR',   type: 'Render',                  year: '2026', color: '#0063D3', layout: 'normal', href: 'https://youtu.be/DDoAQwEvza4' },
+    { id: '09', title: 'Incredibugs',  type: 'Videogame',               year: '2025', color: '#FF1132', layout: 'normal', href: 'https://github.com/Mael047/IncrediBugs_Game' },
+    { id: '10', title: 'AntEater',     type: 'Simulation',              year: '2025', color: '#0077D3', layout: 'xwide', href: 'https://github.com/leunameek/AntEater' },
+    { id: '11', title: 'Crazy Cowboy', type: 'Videogame',               year: '2025', color: '#E42D3F', layout: 'normal', href: 'https://github.com/leunameek/crazycowboy' },
+    { id: '12', title: 'Koin',         type: 'Website',                 year: '2026', color: '#0063D3', layout: 'normal', href: 'https://github.com/ElViejoH/Koinpage' },
   ];
 
   // ============================================================
@@ -87,7 +89,7 @@
       if (countEl) {
         const proxy = { val: 0 };
         tl.to(proxy, {
-          val: 10,
+          val: projects.length,
           duration: 1.2,
           ease: 'power2.out',
           onUpdate() { countEl.textContent = String(Math.round(proxy.val)).padStart(2, '0'); },
@@ -132,21 +134,41 @@
   ============================================================ -->
   <div class="project-grid">
     {#each projects as p}
-      <article
-        class="project-card layout-{p.layout}"
-        style:--card-color={p.color}
-      >
-        <span class="card-id">{p.id}</span>
-        <div class="card-body">
-          <h3 class="card-title">{p.title}</h3>
-        </div>
-        <div class="card-footer">
-          <span class="card-type">{p.type}</span>
-          <span class="card-year">{p.year}</span>
-        </div>
-        <!-- Decorative circle — adds depth without clutter -->
-        <div class="card-deco" aria-hidden="true"></div>
-      </article>
+      {#if p.href}
+        <a
+          class="project-card layout-{p.layout}"
+          style:--card-color={p.color}
+          href={p.href}
+          target="_blank"
+          rel="noreferrer"
+          aria-label="Abrir {p.title} en una nueva pestaña"
+        >
+          <span class="card-id">{p.id}</span>
+          <div class="card-body">
+            <h3 class="card-title">{p.title}</h3>
+          </div>
+          <div class="card-footer">
+            <span class="card-type">{p.type}</span>
+            <span class="card-year">{p.year}</span>
+          </div>
+          <div class="card-deco" aria-hidden="true"></div>
+        </a>
+      {:else}
+        <article
+          class="project-card layout-{p.layout}"
+          style:--card-color={p.color}
+        >
+          <span class="card-id">{p.id}</span>
+          <div class="card-body">
+            <h3 class="card-title">{p.title}</h3>
+          </div>
+          <div class="card-footer">
+            <span class="card-type">{p.type}</span>
+            <span class="card-year">{p.year}</span>
+          </div>
+          <div class="card-deco" aria-hidden="true"></div>
+        </article>
+      {/if}
     {/each}
   </div>
 
@@ -242,14 +264,68 @@
     color: #fff;
     overflow: hidden;
     cursor: default;
-    transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1),
-                box-shadow 0.25s ease;
+    text-decoration: none;
+    isolation: isolate;
+    transform: translateZ(0);
+    transition:
+      transform 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+      box-shadow 0.45s ease,
+      filter 0.45s ease;
   }
 
-  /* Hover: mini bounce via cubic-bezier overshoot */
+  a.project-card {
+    cursor: pointer;
+  }
+
+  .project-card::after {
+    content: '';
+    position: absolute;
+    inset: -55%;
+    z-index: 0;
+    background:
+      linear-gradient(115deg, transparent 38%, rgba(255, 255, 255, 0.42) 48%, transparent 58%),
+      radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.28), transparent 26%);
+    opacity: 0;
+    transform: translateX(-34%) rotate(8deg);
+    transition:
+      opacity 0.35s ease,
+      transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+    pointer-events: none;
+  }
+
+  /* Hover: lifted prism sheen */
   .project-card:hover {
-    transform: scale(1.025) translateY(-4px);
-    box-shadow: 0 24px 48px rgba(0, 0, 0, 0.18);
+    transform: perspective(900px) rotateX(3deg) rotateY(-4deg) translateY(-10px) scale(1.035);
+    box-shadow:
+      0 28px 56px rgba(0, 0, 0, 0.22),
+      0 0 0 1px rgba(255, 255, 255, 0.22) inset,
+      0 0 34px color-mix(in srgb, var(--card-color) 72%, white 28%);
+    filter: saturate(1.16) contrast(1.04);
+  }
+
+  .project-card:hover::after {
+    opacity: 1;
+    transform: translateX(34%) rotate(8deg);
+  }
+
+  .project-card:hover .card-deco {
+    opacity: 0.52;
+    transform: scale(1.28) translate(-10px, -8px);
+  }
+
+  .project-card:hover::before {
+    opacity: 0.68;
+    transform: scale(1.35) translate(-8px, 6px);
+  }
+
+  .project-card:hover .card-id,
+  .project-card:hover .card-footer {
+    opacity: 0.88;
+  }
+
+  .project-card:hover .card-title {
+    transform: translateY(-4px);
+    text-shadow: 0 12px 28px rgba(0, 0, 0, 0.24);
   }
 
   .card-id {
@@ -258,6 +334,9 @@
     letter-spacing: 0.1em;
     opacity: 0.55;
     align-self: flex-start;
+    position: relative;
+    z-index: 1;
+    transition: opacity 0.25s ease;
   }
 
   .card-body {
@@ -265,6 +344,8 @@
     display: flex;
     align-items: flex-end;
     padding-bottom: 12px;
+    position: relative;
+    z-index: 1;
   }
 
   .card-title {
@@ -274,6 +355,9 @@
     font-weight: 800;
     line-height: 1.05;
     letter-spacing: -0.02em;
+    transition:
+      transform 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+      text-shadow 0.45s ease;
   }
 
   .card-footer {
@@ -283,6 +367,7 @@
     gap: 8px;
     position: relative;
     z-index: 1;
+    transition: opacity 0.25s ease;
   }
 
   .card-type {
@@ -310,6 +395,10 @@
     border-radius: 50%;
     background: rgba(255, 255, 255, 0.08);
     pointer-events: none;
+    transition:
+      opacity 0.35s ease,
+      transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+    z-index: 0;
   }
 
   /* Second smaller circle via ::after */
@@ -323,5 +412,9 @@
     border-radius: 50%;
     background: rgba(255, 255, 255, 0.06);
     pointer-events: none;
+    z-index: 0;
+    transition:
+      opacity 0.35s ease,
+      transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
   }
 </style>

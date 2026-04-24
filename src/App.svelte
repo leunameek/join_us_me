@@ -3,6 +3,7 @@
   import { gsap } from 'gsap';
   import { ScrollTrigger } from 'gsap/ScrollTrigger';
   import Showcase from './lib/Showcase.svelte';
+  import Footer from './lib/Footer.svelte';
 
   gsap.registerPlugin(ScrollTrigger);
 
@@ -75,7 +76,7 @@
     { frame: 70,  holdSeconds: 8 },
 
     // Transition zone between scene 1 and mid-scene 2 — slightly slower
-    { start: 93,  end: 144, unitsPerFrame: 4.5 },
+    { start: 93,  end: 144, unitsPerFrame: 5 },
 
     // Scene 3 — four key frames that need reading time
     { frame: 254, holdSeconds: 8 },
@@ -262,6 +263,7 @@
 </div>
 
 <Showcase triggerOffsetPx={40 * PX_PER_UNIT} />
+<Footer />
 
 <style>
   :global(html, body) {
